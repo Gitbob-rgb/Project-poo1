@@ -1,58 +1,53 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include "Grid.h"
-#include "SimulationService.h"
+#include <SFML/Graphics.hpp>  
+#include <iostream>  
+#include <string>  
+#include "Grid.h"  
+#include "ModeGraphique.h"  
+#include "ModeConsole.h"  
 
 int main() {
-    int rows = 10, cols = 10, cellSize = 50, maxIterations;
+    int rows = 5; // Nombre de lignes  
+    int cols = 10; // Nombre de colonnes  
     std::string mode;
+    std::string filename;
 
     std::cout << "Choisissez le mode (terminal ou graphique) : ";
     std::cin >> mode;
 
-    Grid grid(rows, cols);
-    SimulationService service;
+    if (mode != "terminal" && mode != "graphique") {
+        std::cout << "Mode invalide, veuillez redémarrer et choisir 'terminal' ou 'graphique'." << std::endl;
+        return 1;
+    }
 
-    if (mode == "terminal") {
-        std::string filename;
+    Grid grid(rows, cols);
+
+    if (mode == "graphique") {
+        int cellSize = 50; // Taille de chaque cellule  
+        int maxIterations;
+
+        std::cout << "Entrez le nombre d'itérations (0 pour une simulation infinie) : ";
+        std::cin >> maxIterations;
+
+        ModeGraphique graphicalMode;
+        graphicalMode.run(grid, cellSize, maxIterations);
+    }
+    else {
         std::cout << "Entrez le nom du fichier d'entrée : ";
         std::cin >> filename;
 
-        grid.initializeFromInput(filename);
-
-        int generations;
-        std::cout << "Entrez le nombre de générations à simuler : ";
-        std::cin >> generations;
-
-        std::string outputDir = "output";
-        service.runSimulation(grid, generations, outputDir, "grid");
-    }
-    else if (mode == "graphique") {
-        sf::RenderWindow window(sf::VideoMode(cols * cellSize, rows * cellSize), "Jeu de la Vie");
-        while (window.isOpen()) {
-            sf::Event event;
-            while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed) {
-                    window.close();
-                }
-            }
-
-            grid.update();
-            window.clear(sf::Color::Black);
-
-            for (int i = 0; i < rows; ++i) {
-                for (int j = 0; j < cols; ++j) {
-                    sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
-                    cell.setPosition(j * cellSize, i * cellSize);
-                    cell.setFillColor(grid.getCellState(i, j) ? sf::Color::White : sf::Color::Black);
-                    window.draw(cell);
-                }
-            }
-            window.display();
+        try {
+            grid.initializeFromInput(filename);
         }
-    }
-    else {
-        std::cout << "Mode invalide." << std::endl;
+        catch (const std::runtime_error& e) {
+            std::cerr << e.what() << std::endl;
+            return 1;
+        }
+
+        std::cout << "État initial de la grille : " << std::endl;
+        grid.print();
+
+        ModeConsole consoleMode;
+        consoleMode.run(grid, filename);
     }
 
     return 0;

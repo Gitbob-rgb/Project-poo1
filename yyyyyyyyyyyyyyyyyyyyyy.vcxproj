@@ -135,11 +135,20 @@
   <ItemGroup>
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ModeConsole.cpp" />
+    <ClCompile Include="ModeGraphique.cpp" />
     <ClCompile Include="SimulationService.cpp" />
+    <ClCompile Include="StartButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="ModeConsole.h" />
+    <ClInclude Include="ModeGraphique.h" />
     <ClInclude Include="SimulationService.h" />
+    <ClInclude Include="StartButton.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="MinecraftStandard.otf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

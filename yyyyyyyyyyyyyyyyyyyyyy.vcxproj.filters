@@ -24,6 +24,15 @@
     <ClCompile Include="SimulationService.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ModeGraphique.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ModeConsole.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">
@@ -32,5 +41,19 @@
     <ClInclude Include="SimulationService.h">
       <Filter>Fichiers sources</Filter>
     </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <Filter>Fichiers sources</Filter>
+    </ClInclude>
+    <ClInclude Include="ModeGraphique.h">
+      <Filter>Fichiers sources</Filter>
+    </ClInclude>
+    <ClInclude Include="ModeConsole.h">
+      <Filter>Fichiers sources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="MinecraftStandard.otf">
+      <Filter>Fichiers sources</Filter>
+    </Font>
   </ItemGroup>
 </Project>

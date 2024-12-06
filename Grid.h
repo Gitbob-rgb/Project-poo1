@@ -1,12 +1,13 @@
-#ifndef GRID_H
-#define GRID_H
+#ifndef GRID_H  
+#define GRID_H  
 
-#include <vector>
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <stdexcept>
-
+#include <vector>  
+#include <iostream>  
+#include <fstream>  
+#include <stdexcept>  
+#include <string>  
+#include <sstream>  
+#include <SFML/Graphics.hpp>
 class Grid {
 private:
     std::vector<std::vector<bool>> cells;
@@ -19,12 +20,13 @@ public:
     Grid(int r, int c);
     void initializeFromInput(const std::string& filename);
     void update();
+    void draw(sf::RenderWindow& window, int cellSize) const;
     void toggleCell(int mouseX, int mouseY, int cellSize);
     void print() const;
     void saveToFile(const std::string& directory, const std::string& baseFilename, int generation) const;
+
     int getRows() const { return rows; }
     int getCols() const { return cols; }
-    bool getCellState(int row, int col) const { return cells[row][col]; }
 };
 
-#endif
+#endif // GRID_H

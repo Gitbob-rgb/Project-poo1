@@ -1,22 +1,21 @@
-#include "SimulationService.h"
-#include <iostream>
-#include <stdexcept>
+#include "SimulationService.h"  
+#include <iostream>  
+#include <thread>  
+#include <chrono>  
 
-bool SimulationService::directoryExists(const std::string& path) {
-    DWORD fileAttr = GetFileAttributesA(path.c_str());
-    return (fileAttr != INVALID_FILE_ATTRIBUTES && (fileAttr & FILE_ATTRIBUTE_DIRECTORY));
-}
+void SimulationService::runSimulation(Grid& grid, int maxIterations, const std::string& outputDir, const std::string& baseFilename) {
+    int iterationsCount = 0;
 
-bool SimulationService::createDirectory(const std::string& path) {
-    return CreateDirectoryA(path.c_str(), NULL) || GetLastError() == ERROR_ALREADY_EXISTS;
-}
-
-void SimulationService::runSimulation(Grid& grid, int generations, const std::string& outputDir, const std::string& baseFilename) {
-    if (!directoryExists(outputDir) && !createDirectory(outputDir)) {
-        throw std::runtime_error("Could not create output directory: " + outputDir);
-    }
-    for (int generation = 0; generation < generations; ++generation) {
+    for (int generation = 0; (maxIterations == 0 || iterationsCount < maxIterations); ++generation) {
         grid.update();
+        std::cout << "État de la grille à la génération " << generation + 1 << " : " << std::endl;
+        grid.print();
+
+        // Save each generation  
         grid.saveToFile(outputDir, baseFilename, generation + 1);
+        iterationsCount++;
+
+        // Sleep for a while to simulate time passing, adjust as needed  
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
