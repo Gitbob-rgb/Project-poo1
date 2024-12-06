@@ -30,7 +30,7 @@ Ce projet implémente une version interactive du **Jeu de la Vie** de Conway en 
 - **SFML 2.5+** pour le mode graphique.
 
 ### Bibliothèques et fichiers requis
-- Fichier de configuration : `arial.ttf` (pour les textes graphiques).
+- Fichier de configuration : `MinecraftStandard.ttf` (pour les textes graphiques et pour donner un style carre/pixel qui est dans le théme de notre jeu).
 - Fichier d'entrée : fichier texte contenant la configuration initiale (mode terminal).
 
 ### Système d'exploitation
