@@ -30,7 +30,7 @@ Ce projet implémente une version interactive du **Jeu de la Vie** de Conway en 
 - **SFML 2.5+** pour le mode graphique.
 
 ### Bibliothèques et fichiers requis
-- Fichier de configuration : `MinecraftStandard.ttf` (pour les textes graphiques et pour donner un style carre/pixel qui est dans le théme de notre jeu).
+- Fichier de configuration : `MinecraftStandard.otf` (pour les textes graphiques et pour donner un style carre/pixel qui est dans le théme de notre jeu).
 - Fichier d'entrée : fichier texte contenant la configuration initiale (mode terminal).
 
 ### Système d'exploitation
@@ -44,7 +44,7 @@ Ce projet implémente une version interactive du **Jeu de la Vie** de Conway en 
 Utilisez `g++` (ou un autre compilateur C++ compatible) avec les options liées à SFML. Exemple avec g++ :
 
 ```bash
-g++ -o jeu_de_la_vie jeu_de_la_vie.cpp -lsfml-graphics -lsfml-window -lsfml-system
+g++ -o Project-Poo1 main.cpp -lsfml-graphics -lsfml-window -lsfml-system
 ```
 
 ### Exécution
@@ -54,7 +54,7 @@ g++ -o jeu_de_la_vie jeu_de_la_vie.cpp -lsfml-graphics -lsfml-window -lsfml-syst
 Lancez le programme et choisissez `graphique` comme mode.
 
 ```bash
-./jeu_de_la_vie
+./main.cpp
 ```
 
 #### Mode terminal
@@ -63,20 +63,20 @@ Préparez un fichier texte d'entrée contenant :
 - Les dimensions de la grille (à la première ligne : `lignes colonnes`).
 - L'état initial de chaque cellule (0 = morte, 1 = vivante).
 
-Exemple de fichier : `config.txt`
+Exemple de fichier : `nyamchi.txt`
 ```
-5 5
-0 1 0 0 0
-1 1 1 0 0
-0 1 0 0 0
-0 0 0 0 0
-0 0 0 0 0
+5 10
+0 0 1 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0
+0 1 1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
 ```
 
 Exécutez le programme avec le mode terminal et fournissez le nom du fichier :
 
 ```bash
-./jeu_de_la_vie
+./main.cpp
 ```
 
 ## Utilisation
@@ -91,15 +91,15 @@ Exécutez le programme avec le mode terminal et fournissez le nom du fichier :
 
 ## Structure du projet
 
-- `jeu_de_la_vie.cpp` : fichier source principal.
-- `arial.ttf` : police requise pour le mode graphique.
-- `config.txt` : exemple de fichier d'entrée pour le mode terminal.
+- `main.cpp` : fichier source principal.
+- `MinecraftStandard.otf` : police requise pour le mode graphique (pour etre dans le theme)
+- `nyamchi.txt` : fichier d'entrée pour le mode terminal.
 
 ## Limitations
 
 - L'API Win32 est utilisée pour la gestion des répertoires (à modifier pour la compatibilité multiplateforme).
 - La taille de la grille et des cellules est fixée au démarrage (non ajustable dynamiquement).
-- La présence de `arial.ttf` est obligatoire pour le mode graphique.
+- La présence de `MinecraftStandard.otf` est obligatoire pour le mode graphique.
 
 ## Améliorations possibles
 
