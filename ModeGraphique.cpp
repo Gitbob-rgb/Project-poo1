@@ -55,10 +55,7 @@ void ModeGraphique::run(Grid& grid, int cellSize, int maxIterations) {
             grid.update(); // Met à jour l'état des cellules  
             iterationsCount++; // Incrémente le compteur des itérations  
             
-            // Vérifiez si toutes les cellules sont mortes  
-            if (grid.areAllCellsDead()) { // Vous devez implémenter cette méthode dans votre classe Grid    
-                simulationRunning = false; // Arrête la simulation si tout est mort  
-            }
+            
 
             if (maxIterations > 0 && iterationsCount >= maxIterations) {
                 startButton.disableButton(); // Désactive le bouton de démarrage  
