@@ -9,7 +9,7 @@ private:
     sf::Text buttonText;
     bool isStarted;
     bool isDisabled;
-
+    
 public:
     StartButton(float x, float y, float width, float height, sf::Font& font);
     void draw(sf::RenderWindow& window);
