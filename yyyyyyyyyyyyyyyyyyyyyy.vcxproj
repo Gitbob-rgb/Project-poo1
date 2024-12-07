@@ -147,9 +147,6 @@
     <ClInclude Include="SimulationService.h" />
     <ClInclude Include="StartButton.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Font Include="MinecraftStandard.otf" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

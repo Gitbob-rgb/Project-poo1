@@ -2,6 +2,8 @@
 #include <iostream>  
 #include <windows.h>  // Pour Windows  
 #include <errno.h>    // Pour obtenir les erreurs 
+#include <cstring>
+#include <cstdlib>
 using namespace std;
 bool directoryExists(const string& path) {
     DWORD ftyp = GetFileAttributesA(path.c_str());
@@ -15,28 +17,29 @@ bool createDirectory(const string& path) {
 
 void ModeConsole::run(Grid& grid, const std::string& inputFilename) {
     int generations;
-    std::cout << "Entrez le nombre de générations à simuler : ";
+    std::cout << u8"Entrez le nombre de générations à simuler : ";
     std::cin >> generations;
 
     std::string outputDir = inputFilename + "_out";
-
+    string a = "rmdir /s /q " + outputDir;
+    system(a.c_str());
     // Vérifiez si le répertoire existe  
     if (!directoryExists(outputDir)) {
         if (createDirectory(outputDir)) {
-            std::cout << "Le répertoire de sortie a été créé : " << outputDir << std::endl;
+            std::cout << u8"Le répertoire de sortie a été créé : " << outputDir << std::endl;
         }
         else {
-            std::cerr << "Erreur : Impossible de créer le répertoire de sortie." << std::endl;
+            std::cerr << u8"Erreur : Impossible de créer le répertoire de sortie." << std::endl;
             return; // Sortir si la création du répertoire échoue  
         }
     }
     else {
-        std::cout << "Le répertoire de sortie existe déjà : " << outputDir << std::endl;
+        std::cout << u8"Le répertoire de sortie existe déjà : " << outputDir << std::endl;
     }
 
     for (int generation = 0; generation < generations; ++generation) {
         grid.update();
-        std::cout << "État de la grille à la génération " << generation + 1 << " : " << std::endl;
+        std::cout << u8"État de la grille à la génération " << generation + 1 << " : " << std::endl;
         grid.print();
 
         // Sauvegarder chaque génération  

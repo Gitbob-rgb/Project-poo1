@@ -25,7 +25,7 @@ int Grid::countLivingNeighbors(int x, int y) {
 void Grid::initializeFromInput(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
-        throw std::runtime_error("Could not open file.");
+        throw std::runtime_error("ne peut pas ouvrir le fichier");
     }
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
@@ -96,7 +96,7 @@ void Grid::saveToFile(const std::string& directory, const std::string& baseFilen
 
     std::ofstream outFile(ss.str());
     if (!outFile) {
-        std::cerr << "Erreur : Impossible d'ouvrir le fichier de sortie." << std::endl;
+        std::cerr << u8"Erreur : Impossible d'ouvrir le fichier de sortie." << std::endl;
         return;
     }
     for (int i = 0; i < rows; ++i) {
@@ -106,4 +106,33 @@ void Grid::saveToFile(const std::string& directory, const std::string& baseFilen
         outFile << std::endl;
     }
     outFile.close();
+}
+
+// Implémentation de la méthode areAllCellsDead  
+bool Grid::areAllCellsDead() const {
+    for (const auto& row : cells) {
+        for (const auto& cell : row) {
+            if (cell) { // Si une cellule est vivante  
+                return false; // Retourne false si au moins une cellule est vivante  
+            }
+        }
+    }
+    return true; // Retourne true si toutes les cellules sont mortes  
+}
+
+// Méthode pour compter les cellules vivantes  
+int Grid::countLivingCells() const {
+    int count = 0;
+    for (const auto& row : cells) {
+        for (const auto& cell : row) {
+            if (cell == 1) { // Cellule vivante  
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+bool Grid::validateGrid(int expectedAliveCount) {
+    return countLivingCells() == expectedAliveCount;
 }
