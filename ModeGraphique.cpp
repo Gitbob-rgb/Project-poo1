@@ -1,7 +1,7 @@
 #include "ModeGraphique.h"  
 #include <iostream>  
 #include <thread>  
-#include <chrono>  
+#include <chrono>   
 
 void ModeGraphique::run(Grid& grid, int cellSize, int maxIterations) {
     sf::RenderWindow window(sf::VideoMode(grid.getCols() * cellSize, grid.getRows() * cellSize + 50), "Jeu de la Vie");
@@ -54,10 +54,17 @@ void ModeGraphique::run(Grid& grid, int cellSize, int maxIterations) {
         if (simulationRunning) {
             grid.update(); // Met à jour l'état des cellules  
             iterationsCount++; // Incrémente le compteur des itérations  
+            
+            // Vérifiez si toutes les cellules sont mortes  
+            if (grid.areAllCellsDead()) { // Vous devez implémenter cette méthode dans votre classe Grid    
+                simulationRunning = false; // Arrête la simulation si tout est mort  
+            }
+
             if (maxIterations > 0 && iterationsCount >= maxIterations) {
                 startButton.disableButton(); // Désactive le bouton de démarrage  
                 simulationRunning = false; // Arrête la simulation  
                 isClickEnabled = false; // Désactive tous les clics  
+                
             }
         }
 

@@ -51,9 +51,4 @@
       <Filter>Fichiers sources</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Font Include="MinecraftStandard.otf">
-      <Filter>Fichiers sources</Filter>
-    </Font>
-  </ItemGroup>
 </Project>

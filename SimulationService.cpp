@@ -8,7 +8,7 @@ void SimulationService::runSimulation(Grid& grid, int maxIterations, const std::
 
     for (int generation = 0; (maxIterations == 0 || iterationsCount < maxIterations); ++generation) {
         grid.update();
-        std::cout << "État de la grille à la génération " << generation + 1 << " : " << std::endl;
+        std::cout << u8"État de la grille à la génération " << generation + 1 << " : " << std::endl;
         grid.print();
 
         // Save each generation  

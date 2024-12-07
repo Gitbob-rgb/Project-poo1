@@ -4,7 +4,7 @@ StartButton::StartButton(float x, float y, float width, float height, sf::Font& 
     : isStarted(false), isDisabled(false) {
     button.setPosition(x, y);
     button.setSize(sf::Vector2f(width, height));
-    button.setFillColor(sf::Color(100, 250, 50));
+    button.setFillColor(sf::Color(23, 170, 65));
 
     buttonText.setFont(font);
     buttonText.setString("Démarrer");
@@ -31,13 +31,13 @@ void StartButton::startSimulation() {
 void StartButton::pauseSimulation() {
     isStarted = false;
     buttonText.setString("Reprendre");
-    button.setFillColor(sf::Color(100, 250, 50));
+    button.setFillColor(sf::Color(31, 144, 197));
 }
 
 void StartButton::disableButton() {
     isDisabled = true;
     buttonText.setString("Nombre d'itérations max atteint");
-    button.setFillColor(sf::Color(100, 250, 50));
+    button.setFillColor(sf::Color(166, 77, 255));
 }
 
 bool StartButton::getIsStarted() const {

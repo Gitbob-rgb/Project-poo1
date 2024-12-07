@@ -7,7 +7,8 @@
 #include <stdexcept>  
 #include <string>  
 #include <sstream>  
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>  
+
 class Grid {
 private:
     std::vector<std::vector<bool>> cells;
@@ -25,6 +26,10 @@ public:
     void print() const;
     void saveToFile(const std::string& directory, const std::string& baseFilename, int generation) const;
 
+    // Nouvelle méthode pour vérifier si toutes les cellules sont mortes  
+    bool areAllCellsDead() const;
+    bool validateGrid(int expectedAliveCount);
+    int countLivingCells() const; // Déclaration de la nouvelle méthode
     int getRows() const { return rows; }
     int getCols() const { return cols; }
 };

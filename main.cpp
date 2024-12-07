@@ -4,8 +4,9 @@
 #include "Grid.h"  
 #include "ModeGraphique.h"  
 #include "ModeConsole.h"  
-
+#include <windows.h>
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
     int rows = 5; // Nombre de lignes  
     int cols = 10; // Nombre de colonnes  
     std::string mode;
@@ -15,7 +16,7 @@ int main() {
     std::cin >> mode;
 
     if (mode != "terminal" && mode != "graphique") {
-        std::cout << "Mode invalide, veuillez redémarrer et choisir 'terminal' ou 'graphique'." << std::endl;
+        std::cout << u8"Mode invalide, veuillez redémarrer et choisir 'terminal' ou 'graphique'." << std::endl;
         return 1;
     }
 
@@ -25,14 +26,14 @@ int main() {
         int cellSize = 50; // Taille de chaque cellule  
         int maxIterations;
 
-        std::cout << "Entrez le nombre d'itérations (0 pour une simulation infinie) : ";
+        std::cout << u8"Entrez le nombre d'itérations (0 pour une simulation infinie) : ";
         std::cin >> maxIterations;
 
         ModeGraphique graphicalMode;
         graphicalMode.run(grid, cellSize, maxIterations);
     }
     else {
-        std::cout << "Entrez le nom du fichier d'entrée : ";
+        std::cout << u8"Entrez le nom du fichier d'entrée : ";
         std::cin >> filename;
 
         try {
@@ -43,7 +44,7 @@ int main() {
             return 1;
         }
 
-        std::cout << "État initial de la grille : " << std::endl;
+        std::cout << u8"État initial de la grille : " << std::endl;
         grid.print();
 
         ModeConsole consoleMode;
